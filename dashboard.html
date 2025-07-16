@@ -4,10 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/dashboard.css">
 </head>
+
 <body>
+  <div class="container">
+    <button id="signout">Sign Out</button>
     
-    <button id="signout">signout</button>
-    <script  type="module" src="./js/dashboard.js"></script>
+    <h2>Create a Post</h2>
+    <div class="input-section">
+        <input type="text" id="postInput" placeholder="Write something..." />
+        <button id="post-btn">Post</button>
+    </div>
+    
+    <h3>Your Posts</h3>
+    <div id="posts_box"></div>
+</div>
+   <script  type="module" src="./js/dashboard.js"></script>
 </body>
 </html>
+

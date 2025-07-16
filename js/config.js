@@ -1,8 +1,8 @@
 
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-  import { getFirestore,collection, addDoc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+  import { getFirestore,collection, addDoc, query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-analytics.js";
-  import {getAuth,createUserWithEmailAndPassword , signInWithEmailAndPassword , GoogleAuthProvider,signInWithPopup,signOut ,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+  import {getAuth, createUserWithEmailAndPassword , signInWithEmailAndPassword , GoogleAuthProvider,signInWithPopup,signOut ,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 
 
   // Your web app's Firebase configuration
@@ -26,6 +26,6 @@ const db = getFirestore(app);
   const provider = new GoogleAuthProvider();
 export{
     createUserWithEmailAndPassword,auth,signInWithEmailAndPassword,provider,signInWithPopup,GoogleAuthProvider,signOut,onAuthStateChanged,
-    collection, addDoc,db
+    collection, addDoc,db, query, where, onSnapshot
 
 }
