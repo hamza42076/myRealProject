@@ -7,7 +7,8 @@ import {
   db,
   query,
   where,
-  onSnapshot
+  onSnapshot,
+  doc, deleteDoc 
 } from "./config.js";
 
 let signout = document.querySelector("#signout");
@@ -38,6 +39,23 @@ const signoutUser = async () => {
 
 signout.addEventListener("click", signoutUser);
 
+// Document delete karne ka function
+let deleteData = async(id)=>{
+  try {
+    await deleteDoc(doc(db, "posts",id));
+    console.log("Document successfully deleted!");
+  } 
+  catch (error) {
+    console.error("Error deleting document: ", error);
+  }
+}
+let editData=(id)=>{
+  let postInput = document.querySelector("#postInput");
+  let findPost = posts.find((post) => post.id === id)
+  postInput.value = findPost.post;
+
+}
+
 let renderpost=()=>{
   let posts_box = document.querySelector("#posts_box");
   posts_box.innerHTML = '';
@@ -50,7 +68,15 @@ let renderpost=()=>{
     <button class="edit-btn">edit</button>
     <button class='del-btn'>delete</button>
     `
+    cardDiv.querySelector(".del-btn").addEventListener("click",()=>{
+      deleteData(post.id)
+    });
+
+    cardDiv.querySelector(".edit-btn").addEventListener("click",()=>{
+      editData(post.id)
+    })
     posts_box.appendChild(cardDiv)
+
 
   })
 
