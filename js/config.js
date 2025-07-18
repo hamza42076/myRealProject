@@ -1,6 +1,6 @@
 
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-  import { getFirestore,collection, addDoc, query, where, onSnapshot,doc, deleteDoc  } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+  import { getFirestore,collection, addDoc, query, where, onSnapshot,doc, deleteDoc ,updateDoc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-analytics.js";
   import {getAuth, createUserWithEmailAndPassword , signInWithEmailAndPassword , GoogleAuthProvider,signInWithPopup,signOut ,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 
@@ -26,6 +26,6 @@ const db = getFirestore(app);
   const provider = new GoogleAuthProvider();
 export{
     createUserWithEmailAndPassword,auth,signInWithEmailAndPassword,provider,signInWithPopup,GoogleAuthProvider,signOut,onAuthStateChanged,
-    collection, addDoc,db, query, where, onSnapshot,doc, deleteDoc 
+    collection, addDoc,db, query, where, onSnapshot,doc, deleteDoc,updateDoc 
 
 }

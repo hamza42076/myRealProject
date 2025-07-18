@@ -8,11 +8,13 @@ import {
   query,
   where,
   onSnapshot,
-  doc, deleteDoc 
+  doc, deleteDoc ,
+  updateDoc
 } from "./config.js";
 
 let signout = document.querySelector("#signout");
 let post_btn = document.querySelector("#post-btn");
+let editPostsId = null;
 let currentUser = null;
 let posts = [];
 
@@ -53,6 +55,8 @@ let editData=(id)=>{
   let postInput = document.querySelector("#postInput");
   let findPost = posts.find((post) => post.id === id)
   postInput.value = findPost.post;
+  post_btn.innerHTML = "update";
+  editPostsId = id;
 
 }
 
@@ -81,9 +85,31 @@ let renderpost=()=>{
   })
 
 }
-// ✅ Create post function
-const userPost = async () => {
-  try {
+post_btn.addEventListener("click", async()=>{
+      const postInput = document.querySelector("#postInput").value.trim();
+      if (!postInput) {
+      alert("Please enter a post.");
+      return;
+      // 🔄 Update existing post
+    }
+      if(post_btn.innerHTML ==="update" && editPostsId){
+        try {
+          const postRef = doc(db, "posts", editPostsId);
+      await updateDoc(postRef, {
+        post: postInput,
+      });
+      console.log("posts successfully updated");
+      post_btn.innerHTML ="Post";
+      editPostsId = null;
+       document.querySelector("#postInput").value = "";
+
+        } catch (error) {
+          console.log(error);
+        }
+      }
+          // ➕ Create new post!
+      else{
+        try {
     const postInput = document.querySelector("#postInput").value.trim();
 
     if (!postInput) {
@@ -101,9 +127,11 @@ const userPost = async () => {
   } catch (e) {
     console.error("Error adding post:", e);
   }
-};
 
-post_btn.addEventListener("click", userPost);
+      }
+
+
+});
 
 // ✅ Fetch and listen for posts of the current user
 const setupPostsListener = () => {
