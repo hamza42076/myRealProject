@@ -22,7 +22,11 @@ let posts = [];
 onAuthStateChanged(auth, (user) => {
   if (user) {
     currentUser = user.uid;
+    console.log(user.name);
+    
     setupPostsListener();
+    document.querySelector("#userName").innerText = user.displayName;
+
   } else {
     console.log("User is signed out.");
     window.location.replace("index.html");
