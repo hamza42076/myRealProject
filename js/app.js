@@ -28,6 +28,8 @@ let signUpUser = async (e) => {
 
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
+    console.log(user.uid);
+    
 
     window.localStorage.setItem("uid", JSON.stringify(user.uid));
     console.log("User successfully added");

@@ -8,11 +8,12 @@ let selectedUser = null;
 let message = [];
 let chatUnsbscribe = null;
 
-
 console.log(currentUser);
 
+
+
 let renderChat = ()=>{
-    let messages_box =document.querySelector("#messages-box");
+    let messages_box =document.querySelector("#messages_box");
     messages_box.innerHTML = "";
     if(messages_box.length <1){
         messages_box.innerHTML = "<p>No chat yet</p>";
@@ -21,7 +22,7 @@ let renderChat = ()=>{
     }
     message.map((msg)=>{
         let msgDiv = document.createElement("div");
-        msgDiv.className = (msg.from === currentUser.uid ) ? "rightMsg" : "leftMsg";
+        msgDiv.className = (msg.from == currentUser) ? "rightMsg" : "leftMsg";
         msgDiv.innerHTML = `${msg.text}`
 
         messages_box.appendChild(msgDiv)
